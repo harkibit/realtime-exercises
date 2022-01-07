@@ -33,8 +33,6 @@ async function getNewMsgs() {
     .catch((e) => console.log(e));
 
   render();
-
-  setTimeout(getNewMsgs, INTERVAL);
 }
 
 function render() {
@@ -50,5 +48,12 @@ function render() {
 const template = (user, msg) =>
   `<li class="collection-item"><span class="badge">${user}</span>${msg}</li>`;
 
-// make the first request
-getNewMsgs();
+let timeToMakeTheNextRequest = 0;
+async function refTimer(time) {
+  if (timeToMakeTheNextRequest <= time) {
+    await getNewMsgs();
+    timeToMakeTheNextRequest = time + INTERVAL;
+  }
+  requestAnimationFrame(refTimer);
+}
+requestAnimationFrame(refTimer);
