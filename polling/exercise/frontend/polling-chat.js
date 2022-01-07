@@ -12,13 +12,18 @@ chat.addEventListener("submit", function (e) {
 });
 
 async function postNewMsg(user, text) {
-  await fetch("http://localhost:3000/poll", {
+  const data = {
+    user,
+    text,
+  };
+  const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: { user: user, text: JSON.stringify(text) },
-  });
+    body: JSON.stringify(data),
+  };
+  await fetch("http://localhost:3000/poll", options);
 }
 
 async function getNewMsgs() {
