@@ -9,5 +9,5 @@ Inside each folder we have the complete project written by the mentor and the ex
 ```
 git clone https://github.com/harkibit/realtime-exercises.git
 npm install
-npm start
+npm start (start the server) OR npm dev (start the development server. When saving a file it'll automatically restart the folder)
 ```
