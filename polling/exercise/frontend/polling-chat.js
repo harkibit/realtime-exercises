@@ -17,6 +17,14 @@ chat.addEventListener("submit", function (e) {
 async function postNewMsg(user, text) {
   // post to /poll a new message
   // write code here
+
+  fetch("http://localhost:3000/poll", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(text),
+  });
 }
 
 async function getNewMsgs() {
